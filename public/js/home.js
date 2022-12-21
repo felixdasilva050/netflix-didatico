@@ -23,12 +23,12 @@ const fetchMoviesListByGenres = (id, genres) =>{
         makeCategoryElement(`${genres}_movies`, data.results)
     })
     .catch(err => console.log(err));
-}
+};
 
 const makeCategoryElement = (category, data) => {
     selectorMain.innerHTML += `
     <div class="movieList">
-        <button class="preBtn">
+        <button class="prevBtn">
             <img src="img/prev.png" alt="">
         </button>
         <h2 class="movieCateg">${category.replace("_movie", "")}</h2>
@@ -41,7 +41,7 @@ const makeCategoryElement = (category, data) => {
     </div>
     `
     makeCards(category, data);
-}
+};
 
 const makeCards = (id, data) => {
     const movieContainer = document.getElementById(id);
@@ -59,6 +59,10 @@ const makeCards = (id, data) => {
             <p class="movieTitle">${item.title}</p>
         </div>
         `
-    })
-    
-}
+        if(i == data.length -1){
+            setTimeout(()=>{
+                setupScrooling();
+            }, 100)
+        }
+    });
+};
